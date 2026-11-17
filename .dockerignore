@@ -1,0 +1,14 @@
+.git
+.venv
+.env
+.pytest_cache
+__pycache__
+*.egg-info
+data
+tests
+evals
+.claude
+web/node_modules
+src/nettriage/api/static
+dist
+build

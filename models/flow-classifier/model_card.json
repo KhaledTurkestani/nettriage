@@ -1,0 +1,416 @@
+{
+  "id": "flow-gbm-e2ea623d91b4",
+  "created_at": "2026-11-16T13:39:09+00:00",
+  "model_sha256": "e2ea623d91b4fa1a3151408eb00abeeaa1ff904c748cb7b37c2d6e21580a904c",
+  "algorithm": "sklearn.ensemble.HistGradientBoostingClassifier",
+  "params": {
+    "max_iter": 200,
+    "learning_rate": 0.1,
+    "max_leaf_nodes": 31,
+    "l2_regularization": 1.0,
+    "early_stopping": true,
+    "validation_fraction": 0.1,
+    "n_iter_no_change": 10,
+    "seed": 0
+  },
+  "iterations": 116,
+  "library": {
+    "scikit-learn": "1.9.1",
+    "python": "3.14.4"
+  },
+  "features": [
+    "protocol",
+    "duration_us",
+    "fwd_pkts",
+    "bwd_pkts",
+    "fwd_bytes",
+    "bwd_bytes",
+    "fwd_pkt_len_max",
+    "fwd_pkt_len_mean",
+    "fwd_pkt_len_std",
+    "bwd_pkt_len_max",
+    "bwd_pkt_len_mean",
+    "bwd_pkt_len_std",
+    "flow_iat_mean_us",
+    "flow_iat_std_us",
+    "flow_iat_max_us",
+    "fwd_iat_mean_us",
+    "bwd_iat_mean_us",
+    "syn_count",
+    "fin_count",
+    "rst_count",
+    "psh_count",
+    "ack_count",
+    "init_fwd_win",
+    "init_bwd_win",
+    "bytes_per_s",
+    "pkts_per_s"
+  ],
+  "classes": [
+    "benign",
+    "botnet",
+    "brute_force",
+    "dos",
+    "other",
+    "port_scan",
+    "web_attack"
+  ],
+  "threshold": 0.5,
+  "training": {
+    "captures": [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday"
+    ],
+    "flows": 1062138,
+    "by_family": {
+      "benign": 788858,
+      "port_scan": 146008,
+      "dos": 123367,
+      "brute_force": 3498,
+      "botnet": 323,
+      "web_attack": 58,
+      "other": 26
+    },
+    "attempted_flows_counted_as_benign": 6017
+  },
+  "split": {
+    "block_minutes": 5,
+    "rule": "Each day is cut into 5-minute blocks counted from 00:00 UTC. Even blocks (00:00, 00:10, ...) are for training; odd blocks (00:05, 00:15, ...) are held out."
+  },
+  "held_out_test": {
+    "flows": 1036654,
+    "malicious_flows": 232151,
+    "benign_flows": 804503,
+    "precision": 0.9999,
+    "recall": 0.9965,
+    "f1": 0.9982,
+    "false_positives": 31,
+    "false_positives_per_100k_benign": 3.9,
+    "right_family_share": 1.0,
+    "attack_free_captures": {
+      "monday": {
+        "flows": 183353,
+        "false_positives": 6
+      }
+    },
+    "by_label": [
+      {
+        "label": "DoS Hulk",
+        "counted_as": "dos",
+        "flows": 90681,
+        "flagged": 90679,
+        "flagged_share": 1.0,
+        "mostly_called": "dos"
+      },
+      {
+        "label": "Portscan",
+        "counted_as": "port_scan",
+        "flows": 54805,
+        "flagged": 54803,
+        "flagged_share": 1.0,
+        "mostly_called": "port_scan"
+      },
+      {
+        "label": "DDoS",
+        "counted_as": "dos",
+        "flows": 46283,
+        "flagged": 46262,
+        "flagged_share": 0.9995,
+        "mostly_called": "dos"
+      },
+      {
+        "label": "Infiltration - Portscan",
+        "counted_as": "port_scan",
+        "flows": 30020,
+        "flagged": 29933,
+        "flagged_share": 0.9971,
+        "mostly_called": "port_scan"
+      },
+      {
+        "label": "DoS GoldenEye",
+        "counted_as": "dos",
+        "flows": 3071,
+        "flagged": 3071,
+        "flagged_share": 1.0,
+        "mostly_called": "dos"
+      },
+      {
+        "label": "DoS Slowloris",
+        "counted_as": "dos",
+        "flows": 2251,
+        "flagged": 1920,
+        "flagged_share": 0.853,
+        "mostly_called": "dos"
+      },
+      {
+        "label": "FTP-Patator",
+        "counted_as": "brute_force",
+        "flows": 1997,
+        "flagged": 1987,
+        "flagged_share": 0.995,
+        "mostly_called": "brute_force"
+      },
+      {
+        "label": "SSH-Patator",
+        "counted_as": "brute_force",
+        "flows": 1438,
+        "flagged": 1427,
+        "flagged_share": 0.9924,
+        "mostly_called": "brute_force"
+      },
+      {
+        "label": "DoS Slowhttptest",
+        "counted_as": "dos",
+        "flows": 1125,
+        "flagged": 797,
+        "flagged_share": 0.7084,
+        "mostly_called": "dos"
+      },
+      {
+        "label": "Botnet",
+        "counted_as": "botnet",
+        "flows": 413,
+        "flagged": 413,
+        "flagged_share": 1.0,
+        "mostly_called": "botnet"
+      },
+      {
+        "label": "Web Attack - Brute Force",
+        "counted_as": "web_attack",
+        "flows": 37,
+        "flagged": 36,
+        "flagged_share": 0.973,
+        "mostly_called": "web_attack"
+      },
+      {
+        "label": "Infiltration",
+        "counted_as": "other",
+        "flows": 17,
+        "flagged": 9,
+        "flagged_share": 0.5294,
+        "mostly_called": "other"
+      },
+      {
+        "label": "Web Attack - XSS",
+        "counted_as": "web_attack",
+        "flows": 8,
+        "flagged": 8,
+        "flagged_share": 1.0,
+        "mostly_called": "web_attack"
+      },
+      {
+        "label": "Heartbleed",
+        "counted_as": "other",
+        "flows": 4,
+        "flagged": 4,
+        "flagged_share": 1.0,
+        "mostly_called": "other"
+      },
+      {
+        "label": "Web Attack - SQL Injection",
+        "counted_as": "web_attack",
+        "flows": 1,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "BENIGN",
+        "counted_as": "benign",
+        "flows": 798541,
+        "flagged": 30,
+        "flagged_share": 0.0,
+        "mostly_called": "port_scan"
+      },
+      {
+        "label": "Botnet - Attempted",
+        "counted_as": "benign",
+        "flows": 2019,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "DoS Slowhttptest - Attempted",
+        "counted_as": "benign",
+        "flows": 1755,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "DoS Slowloris - Attempted",
+        "counted_as": "benign",
+        "flows": 1000,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "Web Attack - Brute Force - Attempted",
+        "counted_as": "benign",
+        "flows": 675,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "Web Attack - XSS - Attempted",
+        "counted_as": "benign",
+        "flows": 316,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "DoS Hulk - Attempted",
+        "counted_as": "benign",
+        "flows": 166,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "SSH-Patator - Attempted",
+        "counted_as": "benign",
+        "flows": 24,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "Web Attack - SQL Injection - Attempted",
+        "counted_as": "benign",
+        "flows": 5,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      },
+      {
+        "label": "FTP-Patator - Attempted",
+        "counted_as": "benign",
+        "flows": 1,
+        "flagged": 1,
+        "flagged_share": 1.0,
+        "mostly_called": "port_scan"
+      },
+      {
+        "label": "Infiltration - Attempted",
+        "counted_as": "benign",
+        "flows": 1,
+        "flagged": 0,
+        "flagged_share": 0.0,
+        "mostly_called": null
+      }
+    ]
+  },
+  "unseen_attack_test": [
+    {
+      "label": "DoS Hulk",
+      "family": "dos",
+      "family_still_in_training": true,
+      "held_out_flows": 90681,
+      "flagged": 88078,
+      "recall": 0.9713,
+      "mostly_called": "dos"
+    },
+    {
+      "label": "Portscan",
+      "family": "port_scan",
+      "family_still_in_training": true,
+      "held_out_flows": 54805,
+      "flagged": 18541,
+      "recall": 0.3383,
+      "mostly_called": "port_scan"
+    },
+    {
+      "label": "DDoS",
+      "family": "dos",
+      "family_still_in_training": true,
+      "held_out_flows": 46283,
+      "flagged": 37058,
+      "recall": 0.8007,
+      "mostly_called": "port_scan"
+    },
+    {
+      "label": "Infiltration - Portscan",
+      "family": "port_scan",
+      "family_still_in_training": true,
+      "held_out_flows": 30020,
+      "flagged": 12975,
+      "recall": 0.4322,
+      "mostly_called": "port_scan"
+    },
+    {
+      "label": "DoS GoldenEye",
+      "family": "dos",
+      "family_still_in_training": true,
+      "held_out_flows": 3071,
+      "flagged": 1793,
+      "recall": 0.5838,
+      "mostly_called": "dos"
+    },
+    {
+      "label": "DoS Slowloris",
+      "family": "dos",
+      "family_still_in_training": true,
+      "held_out_flows": 2251,
+      "flagged": 272,
+      "recall": 0.1208,
+      "mostly_called": "dos"
+    },
+    {
+      "label": "FTP-Patator",
+      "family": "brute_force",
+      "family_still_in_training": true,
+      "held_out_flows": 1997,
+      "flagged": 0,
+      "recall": 0.0,
+      "mostly_called": null
+    },
+    {
+      "label": "SSH-Patator",
+      "family": "brute_force",
+      "family_still_in_training": true,
+      "held_out_flows": 1438,
+      "flagged": 0,
+      "recall": 0.0,
+      "mostly_called": null
+    },
+    {
+      "label": "DoS Slowhttptest",
+      "family": "dos",
+      "family_still_in_training": true,
+      "held_out_flows": 1125,
+      "flagged": 724,
+      "recall": 0.6436,
+      "mostly_called": "dos"
+    },
+    {
+      "label": "Botnet",
+      "family": "botnet",
+      "family_still_in_training": false,
+      "held_out_flows": 413,
+      "flagged": 0,
+      "recall": 0.0,
+      "mostly_called": null
+    },
+    {
+      "label": "Web Attack - Brute Force",
+      "family": "web_attack",
+      "family_still_in_training": true,
+      "held_out_flows": 37,
+      "flagged": 0,
+      "recall": 0.0,
+      "mostly_called": null
+    }
+  ],
+  "caveats": [
+    "Scores come from flow behaviour only; the model never sees addresses, ports or times.",
+    "It was trained on one week of traffic from one network. Treat a flag as a lead to check, not a verdict.",
+    "It mostly recognises attacks it was trained on. Of 11 attack types removed from training in turn, it flagged between 0% and 97% of their flows, and almost none for 4 of them. A flow that is not flagged is not evidence of benign traffic."
+  ]
+}

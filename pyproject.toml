@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nettriage"
+version = "0.1.0"
+description = "An AI agent that investigates network traffic and writes evidence-cited incident reports."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=2.8,<3",
+    "pydantic>=2.9",
+    "duckdb>=1.1",
+    "pandas>=2.2",
+    "scapy>=2.6",
+    # Pinned to one minor version: the trained model is a pickle and only loads with the
+    # scikit-learn series it was trained with. Retrain when changing this.
+    "scikit-learn~=1.9.0",
+    "fastapi>=0.163",
+    "uvicorn[standard]>=0.30",
+    "typer>=0.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "httpx2>=2",  # FastAPI's test client; plain httpx is deprecated there
+]
+
+[project.scripts]
+nettriage = "nettriage.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nettriage"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

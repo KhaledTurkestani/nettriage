@@ -1,0 +1,8 @@
+{
+  "description": "prompt v1, claude-haiku-5-5, effort high",
+  "target": "system_prompt",
+  "prompt": "v1",
+  "model": "claude-haiku-5-5",
+  "effort": "high",
+  "max_tool_calls": 30
+}

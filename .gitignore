@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+dist/
+build/
+
+# Local data: captures and datasets are never committed.
+# The trained classifier in models/ is small (under 1 MB) and is committed.
+data/
+*.pcap
+*.pcapng
+!tests/fixtures/*.pcap
+
+# Eval output that is bulky or derived. Scores (results.jsonl, SCOREBOARD.md) are committed.
+evals/**/traces/
+evals/**/runs/
+evals/**/report.html
+evals/**/state.json
+evals/**/trajectory/
+
+# The web page: packages are installed and the page is built, neither is committed.
+web/node_modules/
+src/nettriage/api/static/
+
+# Secrets
+.env
+
+# Per-machine tool settings
+.claude/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

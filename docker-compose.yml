@@ -1,0 +1,18 @@
+name: nettriage
+
+services:
+  api:
+    build: .
+    image: nettriage-api
+    ports:
+      # Bound to localhost only: the page has no login, and whoever can reach it can upload
+      # captures and start investigations on your API key. To show it to others, set
+      # NETTRIAGE_READ_ONLY=1 and list the public host name in NETTRIAGE_ALLOWED_HOSTS.
+      - "127.0.0.1:${NETTRIAGE_PORT:-8000}:8000"
+    volumes:
+      # The container runs as uid 10001. On a Linux host, make ./data writable by that
+      # user first (Docker Desktop on Windows and macOS needs nothing).
+      - ./data:/data
+    env_file:
+      - path: .env
+        required: false
